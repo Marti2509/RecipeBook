@@ -1,6 +1,7 @@
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+
 using RecipeBook.Data;
+using RecipeBook.Data.Models;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
@@ -8,7 +9,7 @@ string connectionString = builder.Configuration.GetConnectionString("DefaultConn
 builder.Services.AddDbContext<RecipeBookDbContext>(options =>
     options.UseSqlServer(connectionString));
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options =>
+builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
 {
     options.SignIn.RequireConfirmedAccount = true;
 })
