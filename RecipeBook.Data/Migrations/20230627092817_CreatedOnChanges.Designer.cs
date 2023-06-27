@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RecipeBook.Data;
 
@@ -11,9 +12,10 @@ using RecipeBook.Data;
 namespace RecipeBook.Data.Migrations
 {
     [DbContext(typeof(RecipeBookDbContext))]
-    partial class RecipeBookDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230627092817_CreatedOnChanges")]
+    partial class CreatedOnChanges
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -293,7 +295,7 @@ namespace RecipeBook.Data.Migrations
                     b.Property<DateTime>("CreatedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 6, 27, 9, 30, 33, 465, DateTimeKind.Utc).AddTicks(8334));
+                        .HasDefaultValue(new DateTime(2023, 6, 27, 9, 28, 17, 230, DateTimeKind.Utc).AddTicks(596));
 
                     b.Property<int>("RecipeId")
                         .HasColumnType("int");
@@ -338,7 +340,7 @@ namespace RecipeBook.Data.Migrations
                     b.Property<DateTime>("CreatedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 6, 27, 9, 30, 33, 466, DateTimeKind.Utc).AddTicks(40));
+                        .HasDefaultValue(new DateTime(2023, 6, 27, 9, 28, 17, 230, DateTimeKind.Utc).AddTicks(3325));
 
                     b.Property<string>("ImageUrl")
                         .IsRequired()
