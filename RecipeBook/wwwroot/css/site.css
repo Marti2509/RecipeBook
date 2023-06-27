@@ -1,5 +1,5 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
@@ -14,5 +14,70 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    background-color: #e3e1e1;
+}
+
+.navbar-custom {
+    background-color: #24252a;
+}
+
+.navbar-brand img {
+    width: 50px;
+    height: 51px;
+    margin-left: 5px;
+}
+
+.navbar-nav .nav-link {
+    font-family: 'Viga';
+    font-size: larger;
+    font-weight: 500;
+    color: #f97726;
+    text-decoration: none;
+    margin-right: 3px;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #edf0f1;
+}
+
+.footer {
+    background-color: #24252a;
+    color: #f97726;
+    font-family: 'Viga';
+    text-align: center;
+    width: 100%;
+}
+
+.home_view {
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.home_view img {
+    display: block;
+    margin: auto;
+    height: 29%;
+    width: 29%;
+    background-color: transparent;
+}
+
+.home_view h1 {
+    font-family: "Viga";
+    font-style: italic;
+    font-size: 35px;
+    color: #24252a;
+    text-align: center;
+}
+
+.home_view h2,
+.home_view h3 {
+    font-family: "Viga";
+    font-size: 22px;
+    color: #24252a;
+    text-align: center;
+}
+
+.home_view h3 {
+    font-style: italic;
 }
