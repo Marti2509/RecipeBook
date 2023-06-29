@@ -9,17 +9,63 @@ namespace RecipeBook.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<Category> builder)
         {
-            //TODO:
-            // seed the db with the recipes
-
-            //builder.HasData(this.GenerateCategories());
+            builder.HasData(this.GenerateCategories());
         }
 
         private Category[] GenerateCategories()
         {
             List<Category> categories = new List<Category>();
 
-            //Category category;
+            Category category;
+
+            category = new Category()
+            {
+                Id = 1,
+                Name = "Salad"
+            };
+            categories.Add(category);
+
+            category = new Category()
+            {
+                Id = 2,
+                Name = "Meat"
+            };
+            categories.Add(category);
+
+            category = new Category()
+            {
+                Id = 3,
+                Name = "Seafood"
+            };
+            categories.Add(category);
+
+            category = new Category()
+            {
+                Id = 4,
+                Name = "Soups"
+            };
+            categories.Add(category);
+
+            category = new Category()
+            {
+                Id = 5,
+                Name = "Bread"
+            };
+            categories.Add(category);
+
+            category = new Category()
+            {
+                Id = 6,
+                Name = "Pasta"
+            };
+            categories.Add(category);
+
+            category = new Category()
+            {
+                Id = 7,
+                Name = "Desserts"
+            };
+            categories.Add(category);
 
             return categories.ToArray();
         }
