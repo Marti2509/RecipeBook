@@ -65,7 +65,7 @@ body {
 .home_view h1 {
     font-family: "Viga";
     font-style: italic;
-    font-size: 35px;
+    font-size: 40px;
     color: #24252a;
     text-align: center;
 }
@@ -73,11 +73,31 @@ body {
 .home_view h2,
 .home_view h3 {
     font-family: "Viga";
-    font-size: 22px;
+    font-size: 25px;
     color: #24252a;
     text-align: center;
 }
 
 .home_view h3 {
     font-style: italic;
+}
+
+.dropdown:hover > .dropdown-menu {
+    background-color: #24252a;
+    display: block;
+    margin-top: 0;
+}
+
+.dropdown-item {
+    font-family: 'Viga';
+    font-size: larger;
+    font-weight: 500;
+    color: #f97726;
+    text-decoration: none;
+    margin-right: 3px;
+}
+
+.dropdown-item:hover {
+    color: #edf0f1;
+    background-color: #24252a;
 }

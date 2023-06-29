@@ -33,6 +33,15 @@
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Recipe" asp-action="Saved">Saved Recipes</a>
                         </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" role="button" aria-expanded="false">
+                               Add
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Recipe" asp-action="Add">Recipe</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Category" asp-action="Add">Category</a></li>
+                            </ul>
+                        </li>
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>
