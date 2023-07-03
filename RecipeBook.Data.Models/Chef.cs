@@ -9,7 +9,7 @@ namespace RecipeBook.Data.Models
     {
         public Chef()
         {
-            this.Id = Guid.NewGuid();
+            Id = Guid.NewGuid();
 
             Recipes = new List<Recipe>();
         }

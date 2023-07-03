@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-using RecipeBook.Data.Models.Enums;
 using static RecipeBook.Common.ModelValidationConstants.Recipe;
 
 namespace RecipeBook.Data.Models
@@ -26,19 +25,16 @@ namespace RecipeBook.Data.Models
         public string ImageUrl { get; set; } = null!;
 
         [Required]
-        public string Products { get; set; }
+        public string Products { get; set; } = null!;
 
         [Required]
-        public string Steps { get; set; }
+        public string Steps { get; set; } = null!;
 
         [Required]
         public int Servings { get; set; }
 
         [Required]
         public int CookingTime { get; set; }
-
-        [Required]
-        public CookingTimeType CookingTimeType { get; set; }
 
         [Required]
         public int CategoryId { get; set; }
