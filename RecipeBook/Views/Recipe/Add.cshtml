@@ -1,0 +1,61 @@
+﻿@model AddRecipeFormModel
+@{
+    ViewBag.Title = "Add Recipe";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+<div class="row">
+    <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+        <form asp-controller="Recipe" asp-action="Add" method="post">
+            <div class="mb-3">
+                <label asp-for="@Model.Name" class="form-label-add-edit">Recipe Name</label>
+                <input asp-for="@Model.Name" class="form-control" aria-required="true" />
+                <span asp-validation-for="@Model.Name" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.ImageUrl" class="form-label-add-edit">Image Url</label>
+                <input asp-for="@Model.ImageUrl" class="form-control" aria-required="true" placeholder="400px x 300px" />
+                <span asp-validation-for="@Model.ImageUrl" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.Servings" class="form-label-add-edit">Servings</label>
+                <input asp-for="@Model.Servings" class="form-control" aria-required="true" type="number" step="1" />
+                <span asp-validation-for="@Model.Servings" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.CookingTime" class="form-label-add-edit">Cooking Time</label>
+                <input asp-for="@Model.CookingTime" class="form-control" type="number" step="1" placeholder="in minutes" />
+                <span asp-validation-for="@Model.CookingTime" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.CategoryId" class="form-label-add-edit">Category of the Recipe</label>
+                <select asp-for="@Model.CategoryId" class="form-control" aria-required="true">
+                    @foreach (var category in Model.Categories)
+                    {
+                        <option value="@category.Id">@category.Name</option>
+                    }
+                </select>
+                <span asp-validation-for="@Model.CategoryId" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.Products" class="form-label-add-edit">Products</label>
+                <textarea asp-for="@Model.Products" class="form-control" rows="5" placeholder="Enter the products on separate lines"></textarea>
+                <span asp-validation-for="@Model.Products" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.Steps" class="form-label-add-edit">Steps</label>
+                <textarea asp-for="@Model.Steps" class="form-control" rows="5" placeholder="Enter preparation steps on separate lines"></textarea>
+                <span asp-validation-for="@Model.Steps" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <input class="btn btn-warning mb-2 w-100 p-3 fw-bold" type="submit" value="Add" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
