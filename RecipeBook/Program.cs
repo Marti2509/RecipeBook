@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
-
+using RecipeBook.Core.Contracts;
+using RecipeBook.Core.Services;
 using RecipeBook.Data;
 using RecipeBook.Data.Models;
 
@@ -27,6 +28,9 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
     .AddEntityFrameworkStores<RecipeBookDbContext>();
 
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<IRecipeService, RecipeService>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<IChefService, ChefService>();
 
 WebApplication app = builder.Build();
 

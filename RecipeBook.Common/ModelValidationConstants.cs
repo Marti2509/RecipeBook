@@ -10,6 +10,8 @@
             public const int ImageUrlMaxLength = 2048;
 
             public const int ServingsMinValue = 1;
+
+            public const int CookingTimeMinValue = 1;
         }
 
         public static class Category
