@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using RecipeBook.Core.Contracts;
+
+using static RecipeBook.Common.NotificationMessagesConstants;
+
 using RecipeBook.Core.Models.Recipe;
+using RecipeBook.Core.Contracts;
 
 namespace RecipeBook.Controllers
 {
@@ -26,6 +29,8 @@ namespace RecipeBook.Controllers
 
                 if (!isChef)
                 {
+                    TempData[ErrorMessage] = "You should become Chef to Add Recipes!";
+
                     return RedirectToAction("Become", "Chef");
                 }
 
@@ -40,7 +45,8 @@ namespace RecipeBook.Controllers
             }
             catch (Exception ex)
             {
-                //TODO: TEMPDATA
+                TempData[ErrorMessage] = "Unexpected error occurred, please try again later!";
+
                 return RedirectToAction("Index", "Home");
             }
         }
@@ -54,6 +60,8 @@ namespace RecipeBook.Controllers
 
                 if (!isChef)
                 {
+                    TempData[ErrorMessage] = "You should become Chef to Add Recipes!";
+
                     return RedirectToAction("Become", "Chef");
                 }
 
@@ -80,7 +88,8 @@ namespace RecipeBook.Controllers
             }
             catch (Exception ex)
             {
-                //TODO: TEMPDATA
+                TempData[ErrorMessage] = "Unexpected error occurred, please try again later!";
+
                 return RedirectToAction("Index", "Home");
             }
         }

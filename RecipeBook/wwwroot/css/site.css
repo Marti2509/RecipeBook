@@ -101,3 +101,12 @@ body {
     color: #edf0f1;
     background-color: #24252a;
 }
+
+.btn-orange {
+    color: #f97726;
+    background-color: #24252a;
+}
+
+.btn-orange:hover {
+    color: #edf0f1;
+}
