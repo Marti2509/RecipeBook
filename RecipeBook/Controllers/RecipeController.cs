@@ -4,6 +4,7 @@ using static RecipeBook.Common.NotificationMessagesConstants;
 
 using RecipeBook.Core.Models.Recipe;
 using RecipeBook.Core.Contracts;
+using Microsoft.AspNetCore.Authorization;
 
 namespace RecipeBook.Controllers
 {
@@ -18,6 +19,27 @@ namespace RecipeBook.Controllers
             recipeService = _recipeService;
             categoryService = _categoryService;
             chefService = _chefService;
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<IActionResult> All([FromQuery]AllRecipesQueryModel queryModel)
+        {
+            try
+            {
+                List<AllRecipesViewModel> recipes = await recipeService.AllRecipesAsync(queryModel);
+
+                queryModel.Recipes = recipes;
+                queryModel.Categories = await categoryService.GetAllCategoryNamesAsync();
+
+                return View(queryModel);
+            }
+            catch (Exception ex)
+            {
+                TempData[ErrorMessage] = "Unexpected error occurred, please try again later!";
+
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         [HttpGet]

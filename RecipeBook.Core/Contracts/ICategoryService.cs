@@ -7,5 +7,7 @@ namespace RecipeBook.Core.Contracts
         public Task<List<CategoryViewModel>> GetAllCategoriesAsync();
 
         public Task<bool> CategoryExistsByIdAsync(int id);
+
+        public Task<List<string>> GetAllCategoryNamesAsync();
     }
 }

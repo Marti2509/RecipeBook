@@ -35,5 +35,12 @@ namespace RecipeBook.Core.Services
             return await dbContext.Categories
                 .AnyAsync(c => c.Id == id);
         }
+
+        public async Task<List<string>> GetAllCategoryNamesAsync()
+        {
+            return await dbContext.Categories
+                .Select(c => c.Name)
+                .ToListAsync();
+        }
     }
 }
