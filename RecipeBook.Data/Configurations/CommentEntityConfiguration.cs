@@ -11,27 +11,13 @@ namespace RecipeBook.Data.Configurations
         {
             builder
                 .Property(c => c.CreatedOn)
-                .HasDefaultValue(DateTime.UtcNow);
+                .HasDefaultValueSql("GETDATE()");
 
             builder
                 .HasOne(c => c.Recipe)
                 .WithMany(r => r.Comments)
                 .HasForeignKey(c => c.RecipeId)
                 .OnDelete(DeleteBehavior.Restrict);
-
-            //TODO:
-            // seed the db with the recipes
-
-            //builder.HasData(GenerateComments());
-        }
-
-        private Comment[] GenerateComments()
-        {
-            List<Comment> comments = new List<Comment>();
-
-            //Comment comment;
-
-            return comments.ToArray();
         }
     }
 }

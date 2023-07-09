@@ -11,7 +11,7 @@ namespace RecipeBook.Data.Configurations
         {
             builder
                 .Property(r => r.CreatedOn)
-                .HasDefaultValue(DateTime.UtcNow);
+                .HasDefaultValueSql("GETDATE()");
 
             builder
                 .HasOne(r => r.Category)
@@ -24,20 +24,6 @@ namespace RecipeBook.Data.Configurations
                 .WithMany(c => c.Recipes)
                 .HasForeignKey(r => r.ChefId)
                 .OnDelete(DeleteBehavior.Restrict);
-
-            //TODO:
-            // seed the db with the recipes
-
-            //builder.HasData(GenerateRecipes());
-        }
-
-        private Recipe[] GenerateRecipes()
-        {
-            List<Recipe> recipes = new List<Recipe>();
-
-            //Recipe recipe;
-
-            return recipes.ToArray();
         }
     }
 }
