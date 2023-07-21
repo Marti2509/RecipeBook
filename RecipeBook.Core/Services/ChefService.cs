@@ -27,5 +27,30 @@ namespace RecipeBook.Core.Services
             return await dbContext.Chefs
                 .AnyAsync(c => c.UserId == userId);
         }
+
+        public async Task<bool> ChefExistsByNameAsync(string name)
+        {
+            return await dbContext.Chefs
+                .AnyAsync(c => c.Name == name);
+        }
+
+        public async Task<bool> ChefExistsByPhoneNumberAsync(string phoneNumber)
+        {
+            return await dbContext.Chefs
+                .AnyAsync(c => c.PhoneNumber == phoneNumber);
+        }
+
+        public async Task Create(Guid userId, string name, string phoneNumber)
+        {
+            Chef chef = new Chef()
+            {
+                UserId = userId,
+                Name = name,
+                PhoneNumber = phoneNumber,
+            };
+
+            await dbContext.Chefs.AddAsync(chef);
+            await dbContext.SaveChangesAsync();
+        }
     }
 }

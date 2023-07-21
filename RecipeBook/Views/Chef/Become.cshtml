@@ -1,0 +1,29 @@
+﻿@model BecomeChefFormModel;
+
+@{
+    ViewBag.Title = "Become Chef";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+<div class="form login">
+    <form method="post">
+        <div class="form-group">
+            <label asp-for="Name"></label>
+            <input asp-for="Name" class="form-control" placeholder="Name">
+            <span asp-validation-for="Name" class="small text-danger"></span>
+            <label asp-for="PhoneNumber"></label>
+            <input asp-for="PhoneNumber" class="form-control" placeholder="+359 / 0...">
+            <span asp-validation-for="PhoneNumber" class="small text-danger"></span>
+        </div>
+
+        <div class="text-center">
+            <input class="btn btn-orange mt-3 " type="submit" value="Save" />
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
