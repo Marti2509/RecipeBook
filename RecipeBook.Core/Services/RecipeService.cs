@@ -76,5 +76,25 @@ namespace RecipeBook.Core.Services
             dbContext.Recipes.Add(recipe);
             await dbContext.SaveChangesAsync();
         }
+
+        public async Task<DetailsRecipeViewModel> RecipeDetailsAsync(int id)
+        {
+            return await dbContext.Recipes
+                .Where(r => r.Id == id)
+                .Select(r => new DetailsRecipeViewModel()
+                {
+                    Id = r.Id,
+                    Name = r.Name,
+                    Category = r.Category.Name,
+                    ImageUrl = r.ImageUrl,
+                    Products = r.Products,
+                    Steps = r.Steps,
+                    Servings = r.Servings,
+                    CookingTime = r.CookingTime,
+                    Chef = r.Chef.Name,
+                    ChefId = r.ChefId
+                })
+                .FirstAsync();
+        }
     }
 }

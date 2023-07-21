@@ -5,6 +5,7 @@ using static RecipeBook.Common.NotificationMessagesConstants;
 using RecipeBook.Core.Models.Recipe;
 using RecipeBook.Core.Contracts;
 using Microsoft.AspNetCore.Authorization;
+using System.Text;
 
 namespace RecipeBook.Controllers
 {
@@ -107,6 +108,24 @@ namespace RecipeBook.Controllers
                 await recipeService.AddRecipeAsync(model, chefId);
 
                 return RedirectToAction("All", "Recipe");
+            }
+            catch (Exception ex)
+            {
+                TempData[ErrorMessage] = "Unexpected error occurred, please try again later!";
+
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<IActionResult> Details(int id)
+        {
+            try
+            {
+                var model = await recipeService.RecipeDetailsAsync(id);
+
+                return View(model);
             }
             catch (Exception ex)
             {

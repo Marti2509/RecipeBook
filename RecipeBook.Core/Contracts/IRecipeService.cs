@@ -7,5 +7,7 @@ namespace RecipeBook.Core.Contracts
         public Task AddRecipeAsync(AddRecipeFormModel model, Guid chefId);
 
         public Task<List<AllRecipesViewModel>> AllRecipesAsync(AllRecipesQueryModel queryModel);
+
+        public Task<DetailsRecipeViewModel> RecipeDetailsAsync(int id);
     }
 }

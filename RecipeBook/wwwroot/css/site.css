@@ -111,3 +111,7 @@ body {
 .btn-orange:hover {
     color: #edf0f1;
 }
+
+.card {
+    font-family: 'Viga';
+}

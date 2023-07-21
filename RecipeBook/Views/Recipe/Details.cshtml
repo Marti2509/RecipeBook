@@ -1,0 +1,30 @@
+﻿@model DetailsRecipeViewModel;
+
+@{
+    ViewBag.Title = "Details page";
+}
+
+<h2 class="text-center">Recipe Details</h2>
+<hr />
+
+<div class="card">
+    <div class="card-body text-center">
+        <img src="@Model.ImageUrl" alt="Recipe Image" height="300px" width="400px">
+        <h5 class="card-title">@Model.Name</h5>
+        <p class="card-text"><span class="fw-bold">Category:</span> @Model.Category</p>
+    </div>
+    <div class="card-body">
+        <p class="card-text"><span class="fw-bold">Servings:</span> @Model.Servings</p>
+        <p class="card-text"><span class="fw-bold">Time:</span> @Model.CookingTime minutes</p>
+        <p class="card-text fw-bold">Product List:</p>
+        <p class="card-text" style="white-space: pre-line">@Model.Products</p>
+        <p class="card-text fw-bold">Steps:</p>
+        <p class="card-text" style="white-space: pre-line">@Model.Steps</p>
+        <p class="card-text"><span class="fw-bold">Chef: </span><a asp-route-id="@Model.ChefId" asp-controller="Chef" asp-action="All" src="">@Model.Chef</a></p>
+        <div class="text-center">
+            <a asp-controller="Recipe" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-orange">Edit</a>
+            <a asp-controller="Recipe" asp-action="Save" asp-route-id="@Model.Id" class="btn btn-orange">Save Recipe</a>
+            <a asp-controller="Recipe" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-orange">Delete</a>
+        </div>
+    </div>
+</div>
