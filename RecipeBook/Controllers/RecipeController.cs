@@ -251,5 +251,33 @@ namespace RecipeBook.Controllers
                 return RedirectToAction("Index", "Home");
             }
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Mine()
+        {
+            try
+            {
+                bool isChef = await chefService.ChefExistsByUserIdAsync(GetUserGuidId()!);
+
+                if (!isChef)
+                {
+                    TempData[ErrorMessage] = "You should become Chef to see your recipes!";
+
+                    return RedirectToAction("Become", "Chef");
+                }
+
+                var chefId = await chefService.GetChefIdByUserIdAsync(GetUserGuidId());
+
+                var recipes = await recipeService.MineRecipesAsync(chefId);
+
+                return View(recipes);
+            }
+            catch (Exception ex)
+            {
+                TempData[ErrorMessage] = "Unexpected error occurred, please try again later!";
+
+                return RedirectToAction("Index", "Home");
+            }
+        }
     }
 }

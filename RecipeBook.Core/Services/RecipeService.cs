@@ -142,5 +142,18 @@ namespace RecipeBook.Core.Services
 
             await dbContext.SaveChangesAsync();
         }
+
+        public async Task<List<AllRecipesViewModel>> MineRecipesAsync(Guid chefId)
+        {
+            return await dbContext.Recipes
+                .Where(r => r.ChefId == chefId)
+                .Select(r => new AllRecipesViewModel()
+                {
+                    Id = r.Id,
+                    Name = r.Name,
+                    ImageUrl = r.ImageUrl
+                })
+                .ToListAsync();
+        }
     }
 }

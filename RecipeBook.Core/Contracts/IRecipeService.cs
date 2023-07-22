@@ -17,5 +17,7 @@ namespace RecipeBook.Core.Contracts
         public Task<bool> IsChefWithIdOwnerOfRecipeWithIdAsync(Guid chefId, int recipeId);
 
         public Task EditRecipeAsync(int id, RecipeFormModel model);
+
+        public Task<List<AllRecipesViewModel>> MineRecipesAsync(Guid chefId);
     }
 }
