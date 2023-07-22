@@ -1,0 +1,33 @@
+﻿@model List<AllRecipesViewModel>
+
+@{
+    ViewBag.Title = "Saved Recipes";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+@if (!Model.Any())
+{
+    <h2 class="text-center">No saved recipes found!</h2>
+}
+else
+{
+    <div class="row">
+        @foreach (var recipe in Model)
+        {
+            <div class="col-4 gx-2 gy-2">
+                <div class="card" style="width: 27rem; ">
+                    <div class="card-body">
+                        <img src="@recipe.ImageUrl" class="card-img-top" alt="Recipe Image" height="300px" />
+                        <h5 class="card-title mt-1">@recipe.Name</h5>
+                    </div>
+                    <a asp-controller="Recipe" asp-action="Details" asp-route-id="@recipe.Id" class="btn btn-orange mb-2 w-100 p-3">View Details</a>
+                    <form class="input-group-sm " asp-controller="Recipe" asp-action="Unsave" asp-route-id="@recipe.Id">
+                        <input type="submit" value="Unsave Recipe" class="fs-6 btn btn-orange mb-3 w-100 p-3" />
+                    </form>
+                </div>
+            </div>
+        }
+    </div>
+}

@@ -279,5 +279,56 @@ namespace RecipeBook.Controllers
                 return RedirectToAction("Index", "Home");
             }
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Saved()
+        {
+            try
+            {
+                var recipes = await recipeService.SavedRecipesAsync(GetUserGuidId());
+
+                return View(recipes);
+            }
+            catch (Exception ex)
+            {
+                TempData[ErrorMessage] = "Unexpected error occurred, please try again later!";
+
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Save(int id)
+        {
+            try
+            {
+                await recipeService.SaveRecipe(GetUserGuidId(), id);
+
+                return RedirectToAction("Saved", "Recipe");
+            }
+            catch (Exception ex)
+            {
+                TempData[ErrorMessage] = "Unexpected error occurred, please try again later!";
+
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Unsave(int id)
+        {
+            try
+            {
+                await recipeService.UnsaveRecipe(GetUserGuidId(), id);
+
+                return RedirectToAction("Saved", "Recipe");
+            }
+            catch (Exception ex)
+            {
+                TempData[ErrorMessage] = "Unexpected error occurred, please try again later!";
+
+                return RedirectToAction("Index", "Home");
+            }
+        }
     }
 }

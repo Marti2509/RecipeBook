@@ -19,5 +19,11 @@ namespace RecipeBook.Core.Contracts
         public Task EditRecipeAsync(int id, RecipeFormModel model);
 
         public Task<List<AllRecipesViewModel>> MineRecipesAsync(Guid chefId);
+
+        public Task<List<AllRecipesViewModel>> SavedRecipesAsync(Guid userId);
+
+        public Task SaveRecipe(Guid userId, int recipeId);
+
+        public Task UnsaveRecipe(Guid userId, int recipeId);
     }
 }

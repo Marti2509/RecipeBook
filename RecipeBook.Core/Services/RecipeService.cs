@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Routing.Constraints;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using RecipeBook.Core.Contracts;
 using RecipeBook.Core.Models.Recipe;
 using RecipeBook.Core.Models.Recipe.Enums;
@@ -74,7 +73,7 @@ namespace RecipeBook.Core.Services
                 ChefId = chefId,
             };
 
-            dbContext.Recipes.Add(recipe);
+            await dbContext.Recipes.AddAsync(recipe);
             await dbContext.SaveChangesAsync();
         }
 
@@ -154,6 +153,41 @@ namespace RecipeBook.Core.Services
                     ImageUrl = r.ImageUrl
                 })
                 .ToListAsync();
+        }
+
+        public async Task<List<AllRecipesViewModel>> SavedRecipesAsync(Guid userId)
+        {
+            return await dbContext.ApplicationUsersRecipes
+                .Where(aur => aur.UserId == userId)
+                .Select(aur => new AllRecipesViewModel()
+                {
+                    Id = aur.RecipeId,
+                    Name = aur.Recipe.Name,
+                    ImageUrl = aur.Recipe.ImageUrl
+                })
+                .ToListAsync();
+        }
+
+        public async Task SaveRecipe(Guid userId, int recipeId)
+        {
+            ApplicationUserRecipe applicationUserRecipe = new ApplicationUserRecipe()
+            {
+                UserId = userId,
+                RecipeId = recipeId
+            };
+
+            await dbContext.ApplicationUsersRecipes.AddAsync(applicationUserRecipe);
+            await dbContext.SaveChangesAsync();
+        }
+
+        public async Task UnsaveRecipe(Guid userId, int recipeId)
+        {
+            var applicationUserRecipe = await dbContext.ApplicationUsersRecipes
+                .Where(aur => aur.UserId == userId && aur.RecipeId == recipeId)
+                .FirstAsync();
+
+            dbContext.ApplicationUsersRecipes.Remove(applicationUserRecipe);
+            await dbContext.SaveChangesAsync();
         }
     }
 }
