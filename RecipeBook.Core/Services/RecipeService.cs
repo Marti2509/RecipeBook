@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Routing.Constraints;
+using Microsoft.EntityFrameworkCore;
 using RecipeBook.Core.Contracts;
 using RecipeBook.Core.Models.Recipe;
 using RecipeBook.Core.Models.Recipe.Enums;
@@ -59,7 +60,7 @@ namespace RecipeBook.Core.Services
                 .ToListAsync();
         }
 
-        public async Task AddRecipeAsync(AddRecipeFormModel model, Guid chefId)
+        public async Task AddRecipeAsync(RecipeFormModel model, Guid chefId)
         {
             var recipe = new Recipe()
             {
@@ -95,6 +96,51 @@ namespace RecipeBook.Core.Services
                     ChefId = r.ChefId
                 })
                 .FirstAsync();
+        }
+
+        public async Task<bool> ExistsByIdAsync(int id)
+        {
+            return await dbContext.Recipes
+                .AnyAsync(r => r.Id == id);
+        }
+
+        public async Task<RecipeFormModel> RecipeForEditByIdAsync(int id)
+        {
+            return await dbContext.Recipes
+                .Where(r => r.Id == id)
+                .Select(r => new RecipeFormModel()
+                {
+                    Name = r.Name,
+                    CategoryId = r.CategoryId,
+                    ImageUrl = r.ImageUrl,
+                    Products = r.Products,
+                    Steps = r.Steps,
+                    Servings = r.Servings,
+                    CookingTime = r.CookingTime
+                })
+                .FirstAsync();
+        }
+
+        public async Task<bool> IsChefWithIdOwnerOfRecipeWithIdAsync(Guid chefId, int recipeId)
+        {
+            return await dbContext.Recipes
+                .AnyAsync(r => r.Id == recipeId && r.ChefId == chefId);
+        }
+
+        public async Task EditRecipeAsync(int id, RecipeFormModel model)
+        {
+            var recipe = await dbContext.Recipes
+                .FindAsync(id);
+
+            recipe.Name = model.Name;
+            recipe.ImageUrl = model.ImageUrl;
+            recipe.Products = model.Products;
+            recipe.Steps = model.Steps;
+            recipe.Servings = model.Servings;
+            recipe.CategoryId = model.CategoryId;
+            recipe.CookingTime = model.CookingTime;
+
+            await dbContext.SaveChangesAsync();
         }
     }
 }

@@ -1,11 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+
+using Microsoft.AspNetCore.Mvc;
+using RecipeBook.Core.Contracts;
+using RecipeBook.Core.Models.Recipe;
 
 using static RecipeBook.Common.NotificationMessagesConstants;
-
-using RecipeBook.Core.Models.Recipe;
-using RecipeBook.Core.Contracts;
-using Microsoft.AspNetCore.Authorization;
-using System.Text;
 
 namespace RecipeBook.Controllers
 {
@@ -59,7 +58,7 @@ namespace RecipeBook.Controllers
 
                 var categories = await categoryService.GetAllCategoriesAsync();
 
-                AddRecipeFormModel model = new AddRecipeFormModel()
+                RecipeFormModel model = new RecipeFormModel()
                 {
                     Categories = categories
                 };
@@ -75,7 +74,7 @@ namespace RecipeBook.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(AddRecipeFormModel model)
+        public async Task<IActionResult> Add(RecipeFormModel model)
         {
             try
             {
@@ -123,9 +122,127 @@ namespace RecipeBook.Controllers
         {
             try
             {
+                bool recipeExists = await recipeService.ExistsByIdAsync(id);
+
+                if(!recipeExists)
+                {
+                    TempData[ErrorMessage] = "Recipe with the provided id does not exists!";
+
+                    return RedirectToAction("All", "Recipe");
+                }
+
                 var model = await recipeService.RecipeDetailsAsync(id);
 
                 return View(model);
+            }
+            catch (Exception ex)
+            {
+                TempData[ErrorMessage] = "Unexpected error occurred, please try again later!";
+
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            try
+            {
+                bool recipeExists = await recipeService.ExistsByIdAsync(id);
+
+                if (!recipeExists)
+                {
+                    TempData[ErrorMessage] = "Recipe with the provided id does not exists!";
+
+                    return RedirectToAction("All", "Recipe");
+                }
+
+                bool isChef = await chefService.ChefExistsByUserIdAsync(GetUserGuidId()!);
+
+                if (!isChef)
+                {
+                    TempData[ErrorMessage] = "You should become Chef to Edit Recipes!";
+
+                    return RedirectToAction("Become", "Chef");
+                }
+
+                var chefId = await chefService.GetChefIdByUserIdAsync(GetUserGuidId());
+
+                bool isRecipesChef = await recipeService.IsChefWithIdOwnerOfRecipeWithIdAsync(chefId, id);
+
+                if (!isRecipesChef)
+                {
+                    TempData[ErrorMessage] = "You should be the Chef of the Recipe to Edit it!";
+
+                    return RedirectToAction("All", "Recipe");
+                }
+
+                RecipeFormModel model = await recipeService.RecipeForEditByIdAsync(id);
+
+                model.Categories = await categoryService.GetAllCategoriesAsync();
+
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+                TempData[ErrorMessage] = "Unexpected error occurred, please try again later!";
+
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, RecipeFormModel model)
+        {
+            try
+            {
+                bool recipeExists = await recipeService.ExistsByIdAsync(id);
+
+                if (!recipeExists)
+                {
+                    TempData[ErrorMessage] = "Recipe with the provided id does not exists!";
+
+                    return RedirectToAction("All", "Recipe");
+                }
+
+                bool isChef = await chefService.ChefExistsByUserIdAsync(GetUserGuidId()!);
+
+                if (!isChef)
+                {
+                    TempData[ErrorMessage] = "You should become Chef to Edit Recipes!";
+
+                    return RedirectToAction("Become", "Chef");
+                }
+
+                var chefId = await chefService.GetChefIdByUserIdAsync(GetUserGuidId());
+
+                bool isRecipesChef = await recipeService.IsChefWithIdOwnerOfRecipeWithIdAsync(chefId, id);
+
+                if (!isRecipesChef)
+                {
+                    TempData[ErrorMessage] = "You should be the Chef of the Recipe to Edit it!";
+
+                    return RedirectToAction("All", "Recipe");
+                }
+
+                bool categoryExists = await categoryService.CategoryExistsByIdAsync(model.CategoryId);
+
+                if (!categoryExists)
+                {
+                    ModelState.AddModelError(nameof(model.CategoryId), "Selected category doesn't exist!");
+                }
+
+                if (!ModelState.IsValid)
+                {
+                    var categories = await categoryService.GetAllCategoriesAsync();
+                    model.Categories = categories;
+
+                    return View(model);
+                }
+
+                await recipeService.EditRecipeAsync(id, model);
+
+                return RedirectToAction("Details", "Recipe", new { id });
             }
             catch (Exception ex)
             {

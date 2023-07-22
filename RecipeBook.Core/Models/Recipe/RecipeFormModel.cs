@@ -6,9 +6,9 @@ using RecipeBook.Core.Models.Category;
 
 namespace RecipeBook.Core.Models.Recipe
 {
-    public class AddRecipeFormModel
+    public class RecipeFormModel
     {
-        public AddRecipeFormModel()
+        public RecipeFormModel()
         {
             Categories = new List<CategoryViewModel>();
         }
