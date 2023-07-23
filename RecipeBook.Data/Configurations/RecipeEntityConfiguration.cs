@@ -14,6 +14,10 @@ namespace RecipeBook.Data.Configurations
                 .HasDefaultValueSql("GETDATE()");
 
             builder
+                .Property(r => r.IsActive)
+                .HasDefaultValue(true);
+
+            builder
                 .HasOne(r => r.Category)
                 .WithMany(c => c.Recipes)
                 .HasForeignKey(r => r.CategoryId)

@@ -36,6 +36,8 @@ namespace RecipeBook.Data.Models
         [Required]
         public int CookingTime { get; set; }
 
+        public bool IsActive { get; set; }
+
         [Required]
         public int CategoryId { get; set; }
 

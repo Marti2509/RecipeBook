@@ -49,7 +49,7 @@ namespace RecipeBook.Core.Services
             };
 
             return await recipesQuery
-                //.Where(r => r.IsActive)
+                .Where(r => r.IsActive)
                 .Select(r => new AllRecipesViewModel()
                 {
                     Id = r.Id,
@@ -80,7 +80,7 @@ namespace RecipeBook.Core.Services
         public async Task<DetailsRecipeViewModel> RecipeDetailsAsync(int id)
         {
             return await dbContext.Recipes
-                .Where(r => r.Id == id)
+                .Where(r => r.Id == id && r.IsActive)
                 .Select(r => new DetailsRecipeViewModel()
                 {
                     Id = r.Id,
@@ -100,13 +100,15 @@ namespace RecipeBook.Core.Services
         public async Task<bool> ExistsByIdAsync(int id)
         {
             return await dbContext.Recipes
+                .Where(r => r.IsActive)
                 .AnyAsync(r => r.Id == id);
         }
 
         public async Task<RecipeFormModel> RecipeForEditByIdAsync(int id)
         {
             return await dbContext.Recipes
-                .Where(r => r.Id == id)
+
+                .Where(r => r.Id == id && r.IsActive)
                 .Select(r => new RecipeFormModel()
                 {
                     Name = r.Name,
@@ -123,13 +125,15 @@ namespace RecipeBook.Core.Services
         public async Task<bool> IsChefWithIdOwnerOfRecipeWithIdAsync(Guid chefId, int recipeId)
         {
             return await dbContext.Recipes
+                .Where(r => r.IsActive)
                 .AnyAsync(r => r.Id == recipeId && r.ChefId == chefId);
         }
 
         public async Task EditRecipeAsync(int id, RecipeFormModel model)
         {
             var recipe = await dbContext.Recipes
-                .FindAsync(id);
+                .Where(r => r.IsActive)
+                .FirstAsync(r => r.Id == id);
 
             recipe.Name = model.Name;
             recipe.ImageUrl = model.ImageUrl;
@@ -145,7 +149,7 @@ namespace RecipeBook.Core.Services
         public async Task<List<AllRecipesViewModel>> MineRecipesAsync(Guid chefId)
         {
             return await dbContext.Recipes
-                .Where(r => r.ChefId == chefId)
+                .Where(r => r.ChefId == chefId && r.IsActive)
                 .Select(r => new AllRecipesViewModel()
                 {
                     Id = r.Id,
@@ -158,7 +162,7 @@ namespace RecipeBook.Core.Services
         public async Task<List<AllRecipesViewModel>> SavedRecipesAsync(Guid userId)
         {
             return await dbContext.ApplicationUsersRecipes
-                .Where(aur => aur.UserId == userId)
+                .Where(aur => aur.UserId == userId && aur.Recipe.IsActive)
                 .Select(aur => new AllRecipesViewModel()
                 {
                     Id = aur.RecipeId,
