@@ -5,6 +5,7 @@ using System.Security.Claims;
 namespace RecipeBook.Controllers
 {
     [Authorize]
+    [AutoValidateAntiforgeryToken]
     public class BaseController : Controller
     {
         protected Guid GetUserGuidId()

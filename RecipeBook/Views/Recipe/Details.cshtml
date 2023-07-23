@@ -23,7 +23,9 @@
         <p class="card-text"><span class="fw-bold">Chef: </span><a asp-route-id="@Model.ChefId" asp-controller="Chef" asp-action="All" src="">@Model.Chef</a></p>
         <div class="text-center">
             <a asp-controller="Recipe" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-orange">Edit</a>
-            <a asp-controller="Recipe" asp-action="Save" asp-route-id="@Model.Id" class="btn btn-orange">Save Recipe</a>
+            <form class="btn" asp-controller="Recipe" asp-action="Save" asp-route-id="@Model.Id">
+                <input type="submit" value="Save Recipe" class="btn btn-orange" />
+            </form>
             <a asp-controller="Recipe" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-orange">Delete</a>
         </div>
     </div>
