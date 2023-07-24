@@ -15,7 +15,7 @@ namespace RecipeBook.Core.Services
             dbContext = _dbContext;
         }
 
-        public async Task<Guid> GetChefIdByUserIdAsync(Guid userId)
+        public async Task<Guid> GetChefIdByUserIdAsync(Guid? userId)
         {
             return await dbContext.Chefs
                 .Where(c => c.UserId == userId)
@@ -23,7 +23,7 @@ namespace RecipeBook.Core.Services
                 .FirstAsync();
         }
 
-        public async Task<bool> ChefExistsByUserIdAsync(Guid userId)
+        public async Task<bool> ChefExistsByUserIdAsync(Guid? userId)
         {
             return await dbContext.Chefs
                 .AnyAsync(c => c.UserId == userId);

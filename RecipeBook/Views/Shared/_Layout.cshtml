@@ -1,4 +1,11 @@
-﻿<!DOCTYPE html>
+﻿@using static RecipeBook.Common.ClaimsPrincipalExtensions;
+
+@inject IChefService ChefService;
+@{
+    bool isChef = await ChefService.ChefExistsByUserIdAsync(User.GetGuidId());
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -31,21 +38,36 @@
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Recipe" asp-action="All">All Recipes</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Recipe" asp-action="Mine">My Recipes</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Recipe" asp-action="Saved">Saved Recipes</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" role="button" aria-expanded="false">
-                               Add
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" asp-area="" asp-controller="Recipe" asp-action="Add">Recipe</a></li>
-                                <li><a class="dropdown-item" asp-area="" asp-controller="Category" asp-action="Add">Category</a></li>
-                            </ul>
-                        </li>
+
+                        @if (User.Identity?.IsAuthenticated ?? false)
+                        {
+                            @if (isChef)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="" asp-controller="Recipe" asp-action="Mine">My Recipes</a>
+                                </li>
+                            }
+
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Recipe" asp-action="Saved">Saved Recipes</a>
+                            </li>
+
+                            @if (isChef)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="" asp-controller="Recipe" asp-action="Add">Add Recipe</a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" role="button" aria-expanded="false">
+                                        Categories
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" asp-area="" asp-controller="Category" asp-action="All">All</a></li>
+                                        <li><a class="dropdown-item" asp-area="" asp-controller="Category" asp-action="Add">Add</a></li>
+                                    </ul>
+                                </li>
+                            }
+                        }
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>

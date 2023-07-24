@@ -3,12 +3,22 @@
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 
+@using static RecipeBook.Common.ClaimsPrincipalExtensions;
+@inject IChefService ChefService;
+@{
+    bool isChef = await ChefService.ChefExistsByUserIdAsync(User.GetGuidId());
+}
+
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
 {
-    <li class="nav-item">
-        <a class="nav-link" asp-area="" asp-controller="Chef" asp-action="Become">Become Chef</a>
-    </li>
+    @if (!isChef)
+    {
+        <li class="nav-item">
+            <a class="nav-link" asp-area="" asp-controller="Chef" asp-action="Become">Become Chef</a>
+        </li>
+    }
+    
     <li class="nav-item">
         <a  class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!</a>
     </li>

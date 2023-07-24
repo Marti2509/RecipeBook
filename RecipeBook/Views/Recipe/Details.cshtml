@@ -1,7 +1,16 @@
 ﻿@model DetailsRecipeViewModel;
 
+@using static RecipeBook.Common.ClaimsPrincipalExtensions;
+@inject IChefService ChefService;
+@inject IRecipeService RecipeService;
+
 @{
     ViewBag.Title = "Details page";
+
+    bool isChef = await ChefService.ChefExistsByUserIdAsync(User.GetGuidId()!);
+
+    Guid chefId = await ChefService.GetChefIdByUserIdAsync(User.GetGuidId()!);
+    bool isChefRecipeOwner = await RecipeService.IsChefWithIdOwnerOfRecipeWithIdAsync(chefId, Model.Id);
 }
 
 <h2 class="text-center">Recipe Details</h2>
@@ -22,11 +31,19 @@
         <p class="card-text" style="white-space: pre-line">@Model.Steps</p>
         <p class="card-text"><span class="fw-bold">Chef: </span><a asp-route-id="@Model.ChefId" asp-controller="Chef" asp-action="All" src="">@Model.Chef</a></p>
         <div class="text-center">
-            <a asp-controller="Recipe" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-orange">Edit</a>
+            @if (isChef && isChefRecipeOwner)
+            {
+                <a asp-controller="Recipe" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-orange">Edit</a>
+            }
+
             <form class="btn" asp-controller="Recipe" asp-action="Save" asp-route-id="@Model.Id">
                 <input type="submit" value="Save Recipe" class="btn btn-orange" />
             </form>
-            <a asp-controller="Recipe" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-orange">Delete</a>
+
+            @if (isChef && isChefRecipeOwner)
+            {
+                <a asp-controller="Recipe" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-orange">Delete</a>
+            }
         </div>
     </div>
 </div>

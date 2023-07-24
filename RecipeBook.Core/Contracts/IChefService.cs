@@ -2,9 +2,9 @@
 {
     public interface IChefService
     {
-        public Task<Guid> GetChefIdByUserIdAsync(Guid userId);
+        public Task<Guid> GetChefIdByUserIdAsync(Guid? userId);
 
-        public Task<bool> ChefExistsByUserIdAsync(Guid userId);
+        public Task<bool> ChefExistsByUserIdAsync(Guid? userId);
 
         public Task<bool> ChefExistsByNameAsync(string name);
 
