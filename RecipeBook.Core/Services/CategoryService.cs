@@ -1,12 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
+
+using RecipeBook.Data;
 using RecipeBook.Core.Contracts;
 using RecipeBook.Core.Models.Category;
-using RecipeBook.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RecipeBook.Core.Services
 {

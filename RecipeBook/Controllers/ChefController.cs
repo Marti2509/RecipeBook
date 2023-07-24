@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+
 using RecipeBook.Core.Contracts;
 using RecipeBook.Core.Models.Chef;
-using static RecipeBook.Common.NotificationMessagesConstants;
 
+using static RecipeBook.Common.NotificationMessagesConstants;
 
 namespace RecipeBook.Controllers
 {

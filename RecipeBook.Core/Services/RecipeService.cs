@@ -1,9 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
+
+using RecipeBook.Data;
+using RecipeBook.Data.Models;
 using RecipeBook.Core.Contracts;
 using RecipeBook.Core.Models.Recipe;
 using RecipeBook.Core.Models.Recipe.Enums;
-using RecipeBook.Data;
-using RecipeBook.Data.Models;
 
 namespace RecipeBook.Core.Services
 {

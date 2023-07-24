@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
-using Microsoft.AspNetCore.Mvc;
 using RecipeBook.Core.Contracts;
 using RecipeBook.Core.Models.Recipe;
 

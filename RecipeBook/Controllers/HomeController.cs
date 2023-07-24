@@ -1,7 +1,8 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+
 using RecipeBook.Core.Models;
-using System.Diagnostics;
 
 namespace RecipeBook.Controllers
 {

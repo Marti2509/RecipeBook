@@ -1,7 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using RecipeBook.Core.Contracts;
+
 using RecipeBook.Data;
 using RecipeBook.Data.Models;
+using RecipeBook.Core.Contracts;
 
 namespace RecipeBook.Core.Services
 {
