@@ -25,5 +25,9 @@ namespace RecipeBook.Core.Contracts
         public Task SaveRecipe(Guid userId, int recipeId);
 
         public Task UnsaveRecipe(Guid userId, int recipeId);
+
+        public Task<DeleteRecipeViewModel> GetRecipeForDeleteAsync(int id);
+
+        public Task DeleteRecipeAsync(int id);
     }
 }

@@ -194,5 +194,29 @@ namespace RecipeBook.Core.Services
             dbContext.ApplicationUsersRecipes.Remove(applicationUserRecipe);
             await dbContext.SaveChangesAsync();
         }
+
+        public async Task<DeleteRecipeViewModel> GetRecipeForDeleteAsync(int id)
+        {
+            return await dbContext.Recipes
+                .Where(r => r.IsActive && r.Id == id)
+                .Select(r => new DeleteRecipeViewModel()
+                {
+                    Name = r.Name,
+                    Category = r.Category.Name,
+                    ImageUrl = r.ImageUrl
+                })
+                .FirstAsync();
+        }
+
+        public async Task DeleteRecipeAsync(int id)
+        {
+            var recipe = await dbContext.Recipes
+                .Where(r => r.IsActive && r.Id == id)
+                .FirstAsync();
+
+            recipe.IsActive = false;
+
+            await dbContext.SaveChangesAsync();
+        }
     }
 }
