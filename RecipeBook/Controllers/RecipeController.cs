@@ -34,7 +34,7 @@ namespace RecipeBook.Controllers
 
                 return View(queryModel);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 TempData[ErrorMessage] = "Unexpected error occurred, please try again later!";
 
@@ -65,7 +65,7 @@ namespace RecipeBook.Controllers
 
                 return View(model);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 TempData[ErrorMessage] = "Unexpected error occurred, please try again later!";
 
@@ -108,7 +108,7 @@ namespace RecipeBook.Controllers
 
                 return RedirectToAction("All", "Recipe");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 TempData[ErrorMessage] = "Unexpected error occurred, please try again later!";
 
@@ -135,7 +135,7 @@ namespace RecipeBook.Controllers
 
                 return View(model);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 TempData[ErrorMessage] = "Unexpected error occurred, please try again later!";
 
@@ -183,7 +183,7 @@ namespace RecipeBook.Controllers
 
                 return View(model);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 TempData[ErrorMessage] = "Unexpected error occurred, please try again later!";
 
@@ -244,7 +244,7 @@ namespace RecipeBook.Controllers
 
                 return RedirectToAction("Details", "Recipe", new { id });
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 TempData[ErrorMessage] = "Unexpected error occurred, please try again later!";
 
@@ -272,7 +272,7 @@ namespace RecipeBook.Controllers
 
                 return View(recipes);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 TempData[ErrorMessage] = "Unexpected error occurred, please try again later!";
 
@@ -289,7 +289,7 @@ namespace RecipeBook.Controllers
 
                 return View(recipes);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 TempData[ErrorMessage] = "Unexpected error occurred, please try again later!";
 
@@ -306,7 +306,7 @@ namespace RecipeBook.Controllers
 
                 return RedirectToAction("Saved", "Recipe");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 TempData[ErrorMessage] = "Unexpected error occurred, please try again later!";
 
@@ -323,7 +323,7 @@ namespace RecipeBook.Controllers
 
                 return RedirectToAction("Saved", "Recipe");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 TempData[ErrorMessage] = "Unexpected error occurred, please try again later!";
 
@@ -369,7 +369,7 @@ namespace RecipeBook.Controllers
 
                 return View(model);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 TempData[ErrorMessage] = "Unexpected error occurred, please try again later!";
 
@@ -415,7 +415,7 @@ namespace RecipeBook.Controllers
 
                 return RedirectToAction("Mine", "Recipe");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 TempData[ErrorMessage] = "Unexpected error occurred, please try again later!";
 
