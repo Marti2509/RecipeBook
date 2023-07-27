@@ -1,0 +1,29 @@
+﻿@model List<CategoryViewModel>;
+
+@{
+    ViewBag.Title = "All Categories";
+}
+
+@if (!Model.Any())
+{
+    <h2 class="text-center">No categories found!</h2>
+}
+else
+{
+    <div class="row">
+        @foreach (var category in Model)
+        {
+            <div class="col-3 gx-2 gy-2">
+                <div class="card" style="width: 20rem; ">
+                    <div class="card-body">
+                        <h5 class="card-title mt-1">@category.Name</h5>
+                    </div>
+
+                    <a asp-controller="Category" asp-action="Edit" asp-route-id="@category.Id" class="btn btn-orange">Edit</a>
+                    <a asp-controller="Category" asp-action="Delete" asp-route-id="@category.Id" class="btn btn-orange mt-2">Delete</a>
+
+                </div>
+            </div>
+        }
+    </div>
+}
