@@ -7,10 +7,17 @@
 @{
     ViewBag.Title = "Details page";
 
-    bool isChef = await ChefService.ChefExistsByUserIdAsync(User.GetGuidId()!);
+    bool isChef = await ChefService.ChefExistsByUserIdAsync(User.GetGuidId());
 
-    Guid chefId = await ChefService.GetChefIdByUserIdAsync(User.GetGuidId()!);
-    bool isChefRecipeOwner = await RecipeService.IsChefWithIdOwnerOfRecipeWithIdAsync(chefId, Model.Id);
+    bool isChefRecipeOwner = false;
+
+    if (isChef)
+    {
+        Guid chefId = await ChefService.GetChefIdByUserIdAsync(User.GetGuidId());
+        isChefRecipeOwner = await RecipeService.IsChefWithIdOwnerOfRecipeWithIdAsync(chefId, Model.Id);
+    }
+
+    bool isSaved = await RecipeService.IsRecipeSavedAsync(User.GetGuidId(), Model.Id);
 }
 
 <h2 class="text-center">Recipe Details</h2>
@@ -36,9 +43,18 @@
                 <a asp-controller="Recipe" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-orange">Edit</a>
             }
 
-            <form class="btn" asp-controller="Recipe" asp-action="Save" asp-route-id="@Model.Id">
-                <input type="submit" value="Save Recipe" class="btn btn-orange" />
-            </form>
+            @if (!isSaved)
+            {
+                <form class="btn" asp-controller="Recipe" asp-action="Save" asp-route-id="@Model.Id">
+                    <input type="submit" value="Save Recipe" class="btn btn-orange" />
+                </form>
+            }
+            else
+            {
+                <form class="btn" asp-controller="Recipe" asp-action="Unsave" asp-route-id="@Model.Id">
+                    <input type="submit" value="Unsave Recipe" class="btn btn-orange" />
+                </form>
+            }
 
             @if (isChef && isChefRecipeOwner)
             {

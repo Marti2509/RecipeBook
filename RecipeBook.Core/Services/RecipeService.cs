@@ -218,5 +218,12 @@ namespace RecipeBook.Core.Services
 
             await dbContext.SaveChangesAsync();
         }
+
+        public async Task<bool> IsRecipeSavedAsync(Guid? userId, int id)
+        {
+            return await dbContext.ApplicationUsersRecipes
+                .Where(aur => aur.UserId == userId)
+                .AnyAsync(aur => aur.RecipeId == id);
+        }
     }
 }

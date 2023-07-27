@@ -29,5 +29,7 @@ namespace RecipeBook.Core.Contracts
         public Task<DeleteRecipeViewModel> GetRecipeForDeleteAsync(int id);
 
         public Task DeleteRecipeAsync(int id);
+
+        public Task<bool> IsRecipeSavedAsync(Guid? userId, int id);
     }
 }
