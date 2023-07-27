@@ -17,7 +17,9 @@ namespace RecipeBook.Data.Models
         [Required]
         [MaxLength(NameMaxLength)]
         public string Name { get; set; } = null!;
-        
+
+        public bool IsActive { get; set; }
+
         public ICollection<Recipe> Recipes { get; set; }
     }
 }
