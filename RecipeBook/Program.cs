@@ -33,6 +33,11 @@ builder.Services.AddScoped<IRecipeService, RecipeService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IChefService, ChefService>();
 
+builder.Services.ConfigureApplicationCookie(cfg =>
+{
+    cfg.LoginPath = "/User/Login";
+});
+
 WebApplication app = builder.Build();
 
 if (app.Environment.IsDevelopment())

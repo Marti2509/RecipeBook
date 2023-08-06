@@ -1,9 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication;
 
 using RecipeBook.Data.Models;
 using RecipeBook.Core.Models.User;
-using Microsoft.AspNetCore.Authorization;
+
+using static RecipeBook.Common.NotificationMessagesConstants;
 
 namespace RecipeBook.Controllers
 {
@@ -61,6 +64,43 @@ namespace RecipeBook.Controllers
             await signInManager.SignInAsync(user, false);
 
             return RedirectToAction("Index", "Home");
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<IActionResult> Login(string? returnUrl = null)
+        {
+            await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
+
+            LoginFormModel model = new LoginFormModel()
+            {
+                ReturnUrl = returnUrl
+            };
+
+            return this.View(model);
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<IActionResult> Login(LoginFormModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return this.View(model);
+            }
+
+            var result =
+                await this.signInManager.PasswordSignInAsync(model.Email, model.Password, false, false);
+
+            if (!result.Succeeded)
+            {
+                this.TempData[ErrorMessage] =
+                    "There was an error while logging you in! Please try again later.";
+
+                return this.View(model);
+            }
+
+            return this.Redirect(model.ReturnUrl ?? "/Home/Index");
         }
     }
 }
