@@ -5,8 +5,10 @@
 
 @using static RecipeBook.Common.ClaimsPrincipalExtensions;
 @inject IChefService ChefService;
+@inject IUserService UserService;
 @{
     bool isChef = await ChefService.ChefExistsByUserIdAsync(User.GetGuidId());
+    string fullName = await UserService.GetFullNameAsync(User.Identity?.Name!);
 }
 
 <ul class="navbar-nav">
@@ -20,7 +22,7 @@
     }
     
     <li class="nav-item">
-        <a  class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!</a>
+        <a  class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello, @fullName!</a>
     </li>
     <li class="nav-item">
         <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">

@@ -8,18 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Areas\Identity\Pages\Account\**" />
-    <Content Remove="Areas\Identity\Pages\Account\**" />
-    <EmbeddedResource Remove="Areas\Identity\Pages\Account\**" />
-    <None Remove="Areas\Identity\Pages\Account\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Include="Areas\Identity\Pages\Account\Login.cshtml.cs" />
-    <Compile Include="Areas\Identity\Pages\Account\Register.cshtml.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.14" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.20" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.20" />
@@ -36,13 +24,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Areas\Identity\Pages\" />
     <Folder Include="wwwroot\img\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Areas\Identity\Pages\Account\Login.cshtml" />
-    <None Include="Areas\Identity\Pages\Account\Register.cshtml" />
-    <None Include="Areas\Identity\Pages\Account\_ViewImports.cshtml" />
   </ItemGroup>
 
 </Project>

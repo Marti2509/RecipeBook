@@ -32,6 +32,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IRecipeService, RecipeService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IChefService, ChefService>();
+builder.Services.AddScoped<IUserService, UserService>();
 
 builder.Services.ConfigureApplicationCookie(cfg =>
 {
