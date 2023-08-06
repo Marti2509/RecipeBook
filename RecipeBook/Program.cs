@@ -3,6 +3,7 @@ using RecipeBook.Core.Contracts;
 using RecipeBook.Core.Services;
 using RecipeBook.Data;
 using RecipeBook.Data.Models;
+using Microsoft.AspNetCore.Identity;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
