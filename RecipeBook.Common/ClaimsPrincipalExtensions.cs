@@ -1,5 +1,7 @@
 ﻿using System.Security.Claims;
 
+using static RecipeBook.Common.ApplicationConstants;
+
 namespace RecipeBook.Common
 {
     public static class ClaimsPrincipalExtensions
@@ -14,6 +16,11 @@ namespace RecipeBook.Common
             }
 
             return Guid.Parse(id);
+        }
+
+        public static bool IsAdmin(this ClaimsPrincipal user)
+        {
+            return user.IsInRole(AdminName);
         }
     }
 }

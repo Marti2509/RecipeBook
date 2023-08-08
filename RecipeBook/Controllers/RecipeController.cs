@@ -157,24 +157,27 @@ namespace RecipeBook.Controllers
                     return RedirectToAction("All", "Recipe");
                 }
 
-                bool isChef = await chefService.ChefExistsByUserIdAsync(GetUserGuidId()!);
-
-                if (!isChef)
+                if (!IsAdmin())
                 {
-                    TempData[ErrorMessage] = "You should become Chef to Edit Recipes!";
+                    bool isChef = await chefService.ChefExistsByUserIdAsync(GetUserGuidId()!);
 
-                    return RedirectToAction("Become", "Chef");
-                }
+                    if (!isChef)
+                    {
+                        TempData[ErrorMessage] = "You should become Chef to Edit Recipes!";
 
-                var chefId = await chefService.GetChefIdByUserIdAsync(GetUserGuidId());
+                        return RedirectToAction("Become", "Chef");
+                    }
 
-                bool isRecipesChef = await recipeService.IsChefWithIdOwnerOfRecipeWithIdAsync(chefId, id);
+                    var chefId = await chefService.GetChefIdByUserIdAsync(GetUserGuidId());
 
-                if (!isRecipesChef)
-                {
-                    TempData[ErrorMessage] = "You should be the Chef of the Recipe to Edit it!";
+                    bool isRecipesChef = await recipeService.IsChefWithIdOwnerOfRecipeWithIdAsync(chefId, id);
 
-                    return RedirectToAction("All", "Recipe");
+                    if (!isRecipesChef)
+                    {
+                        TempData[ErrorMessage] = "You should be the Chef of the Recipe to Edit it!";
+
+                        return RedirectToAction("All", "Recipe");
+                    }
                 }
 
                 RecipeFormModel model = await recipeService.RecipeForEditByIdAsync(id);
@@ -205,24 +208,27 @@ namespace RecipeBook.Controllers
                     return RedirectToAction("All", "Recipe");
                 }
 
-                bool isChef = await chefService.ChefExistsByUserIdAsync(GetUserGuidId()!);
-
-                if (!isChef)
+                if (!IsAdmin())
                 {
-                    TempData[ErrorMessage] = "You should become Chef to Edit Recipes!";
+                    bool isChef = await chefService.ChefExistsByUserIdAsync(GetUserGuidId()!);
 
-                    return RedirectToAction("Become", "Chef");
-                }
+                    if (!isChef)
+                    {
+                        TempData[ErrorMessage] = "You should become Chef to Edit Recipes!";
 
-                var chefId = await chefService.GetChefIdByUserIdAsync(GetUserGuidId());
+                        return RedirectToAction("Become", "Chef");
+                    }
 
-                bool isRecipesChef = await recipeService.IsChefWithIdOwnerOfRecipeWithIdAsync(chefId, id);
+                    var chefId = await chefService.GetChefIdByUserIdAsync(GetUserGuidId());
 
-                if (!isRecipesChef)
-                {
-                    TempData[ErrorMessage] = "You should be the Chef of the Recipe to Edit it!";
+                    bool isRecipesChef = await recipeService.IsChefWithIdOwnerOfRecipeWithIdAsync(chefId, id);
 
-                    return RedirectToAction("All", "Recipe");
+                    if (!isRecipesChef)
+                    {
+                        TempData[ErrorMessage] = "You should be the Chef of the Recipe to Edit it!";
+
+                        return RedirectToAction("All", "Recipe");
+                    }
                 }
 
                 bool categoryExists = await categoryService.CategoryExistsByIdAsync(model.CategoryId);
@@ -345,24 +351,27 @@ namespace RecipeBook.Controllers
                     return RedirectToAction("All", "Recipe");
                 }
 
-                bool isChef = await chefService.ChefExistsByUserIdAsync(GetUserGuidId()!);
-
-                if (!isChef)
+                if (!IsAdmin())
                 {
-                    TempData[ErrorMessage] = "You should become Chef to Edit Recipes!";
+                    bool isChef = await chefService.ChefExistsByUserIdAsync(GetUserGuidId()!);
 
-                    return RedirectToAction("Become", "Chef");
-                }
+                    if (!isChef)
+                    {
+                        TempData[ErrorMessage] = "You should become Chef to Edit Recipes!";
 
-                var chefId = await chefService.GetChefIdByUserIdAsync(GetUserGuidId());
+                        return RedirectToAction("Become", "Chef");
+                    }
 
-                bool isRecipesChef = await recipeService.IsChefWithIdOwnerOfRecipeWithIdAsync(chefId, id);
+                    var chefId = await chefService.GetChefIdByUserIdAsync(GetUserGuidId());
 
-                if (!isRecipesChef)
-                {
-                    TempData[ErrorMessage] = "You should be the Chef of the Recipe to Edit it!";
+                    bool isRecipesChef = await recipeService.IsChefWithIdOwnerOfRecipeWithIdAsync(chefId, id);
 
-                    return RedirectToAction("All", "Recipe");
+                    if (!isRecipesChef)
+                    {
+                        TempData[ErrorMessage] = "You should be the Chef of the Recipe to Edit it!";
+
+                        return RedirectToAction("All", "Recipe");
+                    }
                 }
 
                 var model = await recipeService.GetRecipeForDeleteAsync(id);
@@ -391,24 +400,27 @@ namespace RecipeBook.Controllers
                     return RedirectToAction("All", "Recipe");
                 }
 
-                bool isChef = await chefService.ChefExistsByUserIdAsync(GetUserGuidId()!);
-
-                if (!isChef)
+                if (!IsAdmin())
                 {
-                    TempData[ErrorMessage] = "You should become Chef to Edit Recipes!";
+                    bool isChef = await chefService.ChefExistsByUserIdAsync(GetUserGuidId()!);
 
-                    return RedirectToAction("Become", "Chef");
-                }
+                    if (!isChef)
+                    {
+                        TempData[ErrorMessage] = "You should become Chef to Edit Recipes!";
 
-                var chefId = await chefService.GetChefIdByUserIdAsync(GetUserGuidId());
+                        return RedirectToAction("Become", "Chef");
+                    }
 
-                bool isRecipesChef = await recipeService.IsChefWithIdOwnerOfRecipeWithIdAsync(chefId, id);
+                    var chefId = await chefService.GetChefIdByUserIdAsync(GetUserGuidId());
 
-                if (!isRecipesChef)
-                {
-                    TempData[ErrorMessage] = "You should be the Chef of the Recipe to Edit it!";
+                    bool isRecipesChef = await recipeService.IsChefWithIdOwnerOfRecipeWithIdAsync(chefId, id);
 
-                    return RedirectToAction("All", "Recipe");
+                    if (!isRecipesChef)
+                    {
+                        TempData[ErrorMessage] = "You should be the Chef of the Recipe to Edit it!";
+
+                        return RedirectToAction("All", "Recipe");
+                    }
                 }
 
                 await recipeService.DeleteRecipeAsync(id);

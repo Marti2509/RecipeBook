@@ -1,6 +1,8 @@
-﻿using System.Security.Claims;
+﻿using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authorization;
+
+using static RecipeBook.Common.ApplicationConstants;
 
 namespace RecipeBook.Controllers
 {
@@ -18,6 +20,11 @@ namespace RecipeBook.Controllers
             }
 
             return Guid.Parse(id);
+        }
+
+        protected bool IsAdmin()
+        {
+            return User.IsInRole(AdminName);
         }
     }
 }

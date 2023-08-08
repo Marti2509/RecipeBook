@@ -21,6 +21,11 @@ namespace RecipeBook.Controllers
         {
             try
             {
+                if (!IsAdmin())
+                {
+                    return Unauthorized();
+                }
+
                 List<CategoryViewModel> models = await categoryService.GetAllCategoriesAsync();
 
                 return View(models);
@@ -38,7 +43,10 @@ namespace RecipeBook.Controllers
         {
             try
             {
-                // TODO: Implement Admin IF-ELSE
+                if (!IsAdmin())
+                {
+                    return Unauthorized();
+                }
 
                 var model = new CategoryFormModel();
 
@@ -57,7 +65,10 @@ namespace RecipeBook.Controllers
         {
             try
             {
-                // TODO: Implement Admin IF-ELSE
+                if (!IsAdmin())
+                {
+                    return Unauthorized();
+                }
 
                 bool exists = await categoryService.CategoryExistsByNameAsync(model.Name);
 
@@ -88,7 +99,10 @@ namespace RecipeBook.Controllers
         {
             try
             {
-                // TODO: Implement Admin IF-ELSE
+                if (!IsAdmin())
+                {
+                    return Unauthorized();
+                }
 
                 bool categoryExists = await categoryService.CategoryExistsByIdAsync(id);
 
@@ -116,7 +130,10 @@ namespace RecipeBook.Controllers
         {
             try
             {
-                // TODO: Implement Admin IF-ELSE
+                if (!IsAdmin())
+                {
+                    return Unauthorized();
+                }
 
                 bool exists = await categoryService.CategoryExistsByNameAsync(model.Name);
 
@@ -147,7 +164,10 @@ namespace RecipeBook.Controllers
         {
             try
             {
-                // TODO: Implement Admin IF-ELSE
+                if (!IsAdmin())
+                {
+                    return Unauthorized();
+                }
 
                 bool categoryExists = await categoryService.CategoryExistsByIdAsync(id);
 
@@ -175,7 +195,10 @@ namespace RecipeBook.Controllers
         {
             try
             {
-                // TODO: Implement Admin IF-ELSE
+                if (!IsAdmin())
+                {
+                    return Unauthorized();
+                }
 
                 await categoryService.DeleteCategory(id);
 
