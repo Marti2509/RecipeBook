@@ -8,9 +8,19 @@
 <div class="row">
     <div class="col-md-4 offset-md-4">
         <form id="registerForm" method="post">
-            <h2>Create a new account.</h2>
+            <h3 class="text-center mt-4">Create a new account.</h3>
             <hr />
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-floating mb-2">
+                <input asp-for="FirstName" class="form-control" autocomplete="new-password" aria-required="true" />
+                <label asp-for="FirstName"></label>
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-2">
+                <input asp-for="LastName" class="form-control" autocomplete="new-password" aria-required="true" />
+                <label asp-for="LastName"></label>
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
             <div class="form-floating mb-2">
                 <input asp-for="Email" class="form-control" autocomplete="username" aria-required="true" />
                 <label asp-for="Email"></label>
@@ -26,17 +36,12 @@
                 <label asp-for="ConfirmPassword"></label>
                 <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
             </div>
-            <div class="form-floating mb-2">
-                <input asp-for="FirstName" class="form-control" autocomplete="new-password" aria-required="true" />
-                <label asp-for="FirstName"></label>
-                <span asp-validation-for="FirstName" class="text-danger"></span>
+            <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-orange">Register</button>
+            <div>
+                <p>
+                    <a asp-controller="User" asp-action="Login">Have account? Login here!</a>
+                </p>
             </div>
-            <div class="form-floating mb-2">
-                <input asp-for="LastName" class="form-control" autocomplete="new-password" aria-required="true" />
-                <label asp-for="LastName"></label>
-                <span asp-validation-for="LastName" class="text-danger"></span>
-            </div>
-            <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
         </form>
     </div>
 </div>
