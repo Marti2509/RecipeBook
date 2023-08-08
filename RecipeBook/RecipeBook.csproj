@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\RecipeBook.Common\RecipeBook.Common.csproj" />
     <ProjectReference Include="..\RecipeBook.Core\RecipeBook.Core.csproj" />
   </ItemGroup>
 

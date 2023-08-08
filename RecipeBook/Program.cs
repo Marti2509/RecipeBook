@@ -4,6 +4,8 @@ using RecipeBook.Core.Services;
 using RecipeBook.Data;
 using RecipeBook.Data.Models;
 using Microsoft.AspNetCore.Identity;
+using RecipeBook.Core.Extensions;
+using static RecipeBook.Common.ApplicationConstants;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
@@ -26,7 +28,8 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
     options.Password.RequiredLength = 
         builder.Configuration.GetValue<int>("Identity:Password:RequiredLength");
 })
-    .AddEntityFrameworkStores<RecipeBookDbContext>();
+.AddRoles<IdentityRole<Guid>>()
+.AddEntityFrameworkStores<RecipeBookDbContext>();
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IRecipeService, RecipeService>();
@@ -59,6 +62,8 @@ app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.SeedAdmin(AdminEmail);
 
 app.MapDefaultControllerRoute();
 app.MapRazorPages();
