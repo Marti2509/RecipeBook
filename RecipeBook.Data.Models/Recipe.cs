@@ -9,7 +9,6 @@ namespace RecipeBook.Data.Models
     {
         public Recipe()
         {
-            Comments = new List<Comment>();
             ApplicationUsersRecipe = new List<ApplicationUserRecipe>();
         }
 
@@ -51,8 +50,6 @@ namespace RecipeBook.Data.Models
         [Required]
         [ForeignKey(nameof(ChefId))]
         public Chef Chef { get; set; } = null!;
-
-        public ICollection<Comment> Comments { get; set; }
 
         public ICollection<ApplicationUserRecipe> ApplicationUsersRecipe { get; set; }
 
