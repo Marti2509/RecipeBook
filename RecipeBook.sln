@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeBook", "RecipeBook\RecipeBook.csproj", "{8CC7DE14-E62D-4EFC-8C4B-A9A099411E73}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecipeBook", "RecipeBook\RecipeBook.csproj", "{8CC7DE14-E62D-4EFC-8C4B-A9A099411E73}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeBook.Common", "RecipeBook.Common\RecipeBook.Common.csproj", "{84609640-2BE4-445B-88E1-56BB037E2C62}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecipeBook.Common", "RecipeBook.Common\RecipeBook.Common.csproj", "{84609640-2BE4-445B-88E1-56BB037E2C62}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeBook.Core", "RecipeBook.Core\RecipeBook.Core.csproj", "{148A2A90-ADE2-4C8C-8319-A5BCE4188B6C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecipeBook.Core", "RecipeBook.Core\RecipeBook.Core.csproj", "{148A2A90-ADE2-4C8C-8319-A5BCE4188B6C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeBook.Data", "RecipeBook.Data\RecipeBook.Data.csproj", "{BBD7516B-540E-4E62-8F1B-429CD3B7DB84}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecipeBook.Data", "RecipeBook.Data\RecipeBook.Data.csproj", "{BBD7516B-540E-4E62-8F1B-429CD3B7DB84}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeBook.Data.Models", "RecipeBook.Data.Models\RecipeBook.Data.Models.csproj", "{B69DAAC5-1F9E-4DA4-A851-CF622F6DAF6B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecipeBook.Data.Models", "RecipeBook.Data.Models\RecipeBook.Data.Models.csproj", "{B69DAAC5-1F9E-4DA4-A851-CF622F6DAF6B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeBook.Core.Tests", "RecipeBook.Core.Tests\RecipeBook.Core.Tests.csproj", "{40EF399F-0DA0-4133-B377-795BF2F06697}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{B69DAAC5-1F9E-4DA4-A851-CF622F6DAF6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B69DAAC5-1F9E-4DA4-A851-CF622F6DAF6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B69DAAC5-1F9E-4DA4-A851-CF622F6DAF6B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40EF399F-0DA0-4133-B377-795BF2F06697}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40EF399F-0DA0-4133-B377-795BF2F06697}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40EF399F-0DA0-4133-B377-795BF2F06697}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40EF399F-0DA0-4133-B377-795BF2F06697}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
