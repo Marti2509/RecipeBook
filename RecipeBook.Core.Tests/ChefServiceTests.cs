@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.VisualStudio.Debugger.Contracts.HotReload;
 using RecipeBook.Core.Contracts;
 using RecipeBook.Core.Services;
 using RecipeBook.Data;

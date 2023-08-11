@@ -26,13 +26,13 @@ namespace RecipeBook.Core.Services
                     Name = c.Name
                 })
                 .ToListAsync();
-        }
+        } // make test
 
         public async Task<bool> CategoryExistsByIdAsync(int id)
         {
             return await dbContext.Categories
                 .AnyAsync(c => c.Id == id && c.IsActive);
-        }
+        } // make test
 
         public async Task<List<string>> GetAllCategoryNamesAsync()
         {
@@ -40,13 +40,13 @@ namespace RecipeBook.Core.Services
                 .Where(c => c.IsActive)
                 .Select(c => c.Name)
                 .ToListAsync();
-        }
+        } // make test
 
         public async Task<bool> CategoryExistsByNameAsync(string name)
         {
             return await dbContext.Categories
                 .AnyAsync(c => c.Name == name && c.IsActive);
-        }
+        } // make test
 
         public async Task AddCategoryAsync(CategoryFormModel model)
         {
@@ -68,7 +68,7 @@ namespace RecipeBook.Core.Services
                     Name = c.Name
                 })
                 .FirstAsync();
-        }
+        } // make test
 
         public async Task EditCategoryAsync(int id, CategoryFormModel model)
         {

@@ -58,7 +58,7 @@ namespace RecipeBook.Core.Services
                     ImageUrl = r.ImageUrl
                 })
                 .ToListAsync();
-        }
+        } // test?
 
         public async Task AddRecipeAsync(RecipeFormModel model, Guid chefId)
         {
@@ -103,7 +103,7 @@ namespace RecipeBook.Core.Services
             return await dbContext.Recipes
                 .Where(r => r.IsActive)
                 .AnyAsync(r => r.Id == id);
-        }
+        } // test
 
         public async Task<RecipeFormModel> RecipeForEditByIdAsync(int id)
         {
@@ -128,7 +128,7 @@ namespace RecipeBook.Core.Services
             return await dbContext.Recipes
                 .Where(r => r.IsActive)
                 .AnyAsync(r => r.Id == recipeId && r.ChefId == chefId);
-        }
+        } // test
 
         public async Task EditRecipeAsync(int id, RecipeFormModel model)
         {
@@ -183,7 +183,7 @@ namespace RecipeBook.Core.Services
 
             await dbContext.ApplicationUsersRecipes.AddAsync(applicationUserRecipe);
             await dbContext.SaveChangesAsync();
-        }
+        } // test?
 
         public async Task UnsaveRecipe(Guid userId, int recipeId)
         {
@@ -193,7 +193,7 @@ namespace RecipeBook.Core.Services
 
             dbContext.ApplicationUsersRecipes.Remove(applicationUserRecipe);
             await dbContext.SaveChangesAsync();
-        }
+        } // tets?
 
         public async Task<DeleteRecipeViewModel> GetRecipeForDeleteAsync(int id)
         {
@@ -206,7 +206,7 @@ namespace RecipeBook.Core.Services
                     ImageUrl = r.ImageUrl
                 })
                 .FirstAsync();
-        }
+        } // test
 
         public async Task DeleteRecipeAsync(int id)
         {
@@ -224,6 +224,6 @@ namespace RecipeBook.Core.Services
             return await dbContext.ApplicationUsersRecipes
                 .Where(aur => aur.UserId == userId)
                 .AnyAsync(aur => aur.RecipeId == id);
-        }
+        } // test
     }
 }
