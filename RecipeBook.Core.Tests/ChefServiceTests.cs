@@ -15,7 +15,7 @@ namespace RecipeBook.Core.Tests
         private IChefService chefService;
 
         [OneTimeSetUp]
-        public void OneTimeSetUp()
+        public async Task OneTimeSetUp()
         {
             this.dbOptions = new DbContextOptionsBuilder<RecipeBookDbContext>()
                 .UseInMemoryDatabase("RecipeBookInMemory" + Guid.NewGuid().ToString())
@@ -23,7 +23,7 @@ namespace RecipeBook.Core.Tests
             this.dbContext = new RecipeBookDbContext(this.dbOptions);
 
             this.dbContext.Database.EnsureCreated();
-            SeedDb(this.dbContext);
+            await SeedDb(this.dbContext);
 
             this.chefService = new ChefService(this.dbContext);
         }
