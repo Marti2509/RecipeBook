@@ -9,8 +9,12 @@ namespace RecipeBook.Core.Tests
         public static ApplicationUser ChefUser;
         public static ApplicationUser User;
         public static Chef Chef;
+        public static Category Category1;
+        public static Category Category2;
+        public static Recipe Recipe1;
+        public static ApplicationUserRecipe ApplicationUserRecipe1;
 
-        public static void SeedDb(RecipeBookDbContext dbContext)
+        public async static Task SeedDb(RecipeBookDbContext dbContext)
         {
             ChefUser = new ApplicationUser()
             {
@@ -51,11 +55,46 @@ namespace RecipeBook.Core.Tests
                 Name = "Peshoo"
             };
 
+            Category1 = new Category()
+            {
+                Name = "Category1",
+                IsActive = true
+            };
+
+            Category2 = new Category()
+            {
+                Name = "Category2",
+                IsActive = true
+            };
+
+            Recipe1 = new Recipe()
+            {
+                Name = "Test",
+                Servings = 2,
+                Steps = "step1",
+                Chef = Chef,
+                CookingTime = 30,
+                ImageUrl = "asdasdasdasdasd.com",
+                IsActive = true,
+                Products = "prod1",
+                Category = Category1
+            };
+
+            ApplicationUserRecipe1 = new ApplicationUserRecipe
+            {
+                User = User,
+                Recipe = Recipe1
+            };
+
             dbContext.Users.Add(ChefUser);
             dbContext.Users.Add(User);
             dbContext.Chefs.Add(Chef);
+            dbContext.Categories.Add(Category1);
+            dbContext.Categories.Add(Category2);
+            dbContext.Recipes.Add(Recipe1);
+            dbContext.ApplicationUsersRecipes.Add(ApplicationUserRecipe1);
 
-            dbContext.SaveChanges();
+            await dbContext.SaveChangesAsync();
         }
     }
 }
