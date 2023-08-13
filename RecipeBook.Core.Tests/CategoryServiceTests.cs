@@ -62,7 +62,7 @@ namespace RecipeBook.Core.Tests
         [Test]
         public async Task CategoryExistsByNameAsyncShouldReturnFalseIfDoesNotExists()
         {
-            string name = "asdasd";
+            string name = "random name";
 
             var result = await this.categoryService.CategoryExistsByNameAsync(name);
 
