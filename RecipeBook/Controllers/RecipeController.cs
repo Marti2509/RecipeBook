@@ -5,6 +5,7 @@ using RecipeBook.Core.Contracts;
 using RecipeBook.Core.Models.Recipe;
 
 using static RecipeBook.Common.NotificationMessagesConstants;
+using static RecipeBook.Common.ApplicationConstants;
 
 namespace RecipeBook.Controllers
 {
@@ -27,6 +28,11 @@ namespace RecipeBook.Controllers
         {
             try
             {
+                if (User.IsInRole(AdminName))
+                {
+                    return RedirectToAction("All", "Recipe", new { Area = AdminAreaName });
+                }
+
                 List<AllRecipesViewModel> recipes = await recipeService.AllRecipesAsync(queryModel);
 
                 queryModel.Recipes = recipes;

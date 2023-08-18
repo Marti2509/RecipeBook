@@ -225,5 +225,18 @@ namespace RecipeBook.Core.Services
                 .Where(aur => aur.UserId == userId)
                 .AnyAsync(aur => aur.RecipeId == id);
         }
+
+        public async Task<List<AllRecipesViewModel>> AllRecipesAsync()
+        {
+            return await dbContext.Recipes
+                .Where(r => r.IsActive)
+                .Select(r => new AllRecipesViewModel()
+                {
+                    Id = r.Id,
+                    Name = r.Name,
+                    ImageUrl = r.ImageUrl
+                })
+                .ToListAsync();
+        }
     }
 }
