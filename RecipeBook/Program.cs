@@ -40,6 +40,7 @@ builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.ConfigureApplicationCookie(cfg =>
 {
     cfg.LoginPath = "/User/Login";
+    cfg.AccessDeniedPath = "/Home/Error/401";
 });
 
 WebApplication app = builder.Build();
@@ -68,7 +69,18 @@ app.UseAuthorization();
 
 app.SeedAdmin(AdminEmail);
 
-app.MapDefaultControllerRoute();
-app.MapRazorPages();
+app.UseEndpoints(config =>
+{
+    config.MapControllerRoute(
+        name: "areas",
+        pattern: "/{area:exists}/{controller=Home}/{action=Index}/{id?}"
+    );
+    config.MapControllerRoute(
+        name: "ProtectingUrlRoute",
+        pattern: "/{controller}/{action}/{id}/{information}",
+        defaults: new { Controller = "Home", Action = "Index" });
+    config.MapDefaultControllerRoute();
+    config.MapRazorPages();
+});
 
 app.Run();

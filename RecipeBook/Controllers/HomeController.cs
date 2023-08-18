@@ -1,8 +1,7 @@
-﻿using System.Diagnostics;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authorization;
 
-using RecipeBook.Core.Models;
+using static RecipeBook.Common.ApplicationConstants;
 
 namespace RecipeBook.Controllers
 {
@@ -16,6 +15,11 @@ namespace RecipeBook.Controllers
         [AllowAnonymous]
         public IActionResult Index()
         {
+            if (User.IsInRole(AdminName))
+            {
+                return RedirectToAction("Index", "Home", new { Area = AdminAreaName });
+            }
+
             return View();
         }
 

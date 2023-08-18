@@ -1,0 +1,17 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="mt-4 p-5 text-center">
+    <h2 class="display-4">Hello, Admin!</h2>
+    <p class="lead mb-1 mt-3">
+        This is your administrator area - you can <b>read</b>, <b>create</b>,
+        <b>delete</b> and <b>edit</b> recipes.
+    </p>
+    <p class="lead mt-1">
+        You can also see <b>all users</b> and <b>all chefs</b> in the system.
+    </p>
+    <hr class="my-4">
+    <a asp-controller="Recipe" asp-action="All" class="btn btn-orange">All Recipes</a>
+    <a asp-controller="User" asp-action="All" class="btn btn-orange">All Users</a>
+</div>
