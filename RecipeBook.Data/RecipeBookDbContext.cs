@@ -20,6 +20,8 @@ namespace RecipeBook.Data
 
         public DbSet<Chef> Chefs { get; set; } = null!;
 
+        public DbSet<Comment> Comments { get; set; } = null!;
+
         public DbSet<ApplicationUserRecipe> ApplicationUsersRecipes { get; set; } = null!;
 
 

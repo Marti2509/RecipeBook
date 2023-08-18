@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RecipeBook.Data;
 
@@ -11,9 +12,10 @@ using RecipeBook.Data;
 namespace RecipeBook.Data.Migrations
 {
     [DbContext(typeof(RecipeBookDbContext))]
-    partial class RecipeBookDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230818234059_AddedCommentsTable")]
+    partial class AddedCommentsTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -350,9 +352,7 @@ namespace RecipeBook.Data.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime>("CreatedOn")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("GETDATE()");
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("RecipeId")
                         .HasColumnType("int");
