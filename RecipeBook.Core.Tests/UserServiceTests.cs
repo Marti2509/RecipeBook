@@ -37,5 +37,15 @@ namespace RecipeBook.Core.Tests
 
             Assert.That(fullName == result);
         }
+
+        [Test]
+        public async Task GetFullNameByIdAsyncShouldReturnFullName()
+        {
+            string fullName = $"{User.FirstName} {User.LastName}";
+
+            string result = await userService.GetFullNameByIdAsync(User.Id.ToString());
+
+            Assert.That(fullName == result);
+        }
     }
 }
