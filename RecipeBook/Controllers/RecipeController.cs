@@ -38,6 +38,7 @@ namespace RecipeBook.Controllers
                 queryModel.Recipes = recipes;
                 queryModel.Categories = await categoryService.GetAllCategoryNamesAsync();
 
+
                 return View(queryModel);
             }
             catch (Exception)

@@ -5,6 +5,7 @@ using RecipeBook.Data.Models;
 using RecipeBook.Core.Contracts;
 using RecipeBook.Core.Models.Recipe;
 using RecipeBook.Core.Models.Recipe.Enums;
+using RecipeBook.Core.Models.Comment;
 
 namespace RecipeBook.Core.Services
 {
@@ -93,7 +94,12 @@ namespace RecipeBook.Core.Services
                     Servings = r.Servings,
                     CookingTime = r.CookingTime,
                     Chef = r.Chef.Name,
-                    ChefId = r.ChefId
+                    ChefId = r.ChefId,
+                    Comments = r.Comments.Select(c => new CommentViewModel()
+                    {
+                        Text = c.Text,
+                        User = $"{c.User.FirstName} {c.User.LastName}",
+                    }).ToList()
                 })
                 .FirstAsync();
         }

@@ -29,5 +29,7 @@ namespace RecipeBook.Data.Models
         public Recipe Recipe { get; set; } = null!;
 
         public DateTime CreatedOn { get; set; }
+
+        public bool IsActive { get; set; } = true;
     }
 }

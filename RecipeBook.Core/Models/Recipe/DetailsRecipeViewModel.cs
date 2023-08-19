@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using RecipeBook.Core.Models.Comment;
 
 namespace RecipeBook.Core.Models.Recipe
 {
@@ -31,6 +32,6 @@ namespace RecipeBook.Core.Models.Recipe
 
         public Guid ChefId { get; set; }
 
-        //public ICollection<CommentViewModel> Comments { get; set; }
+        public List<CommentViewModel> Comments { get; set; }
     }
 }

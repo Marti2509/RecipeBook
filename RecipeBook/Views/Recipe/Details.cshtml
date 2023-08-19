@@ -63,3 +63,24 @@
         </div>
     </div>
 </div>
+<div class="container bg-white">
+    <a asp-area="" asp-controller="Comment" asp-action="Add" asp-route-id="@Model.Id" class="btn btn-orange">Add Comment</a>
+
+    @if (Model.Comments.Any())
+    {
+        @foreach (var comment in Model.Comments)
+        {
+            <div class="card-header">
+                @comment.User:
+            </div>
+            <div class="card-body">
+                @comment.Text
+            </div>
+        }
+    }
+    
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

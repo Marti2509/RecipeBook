@@ -1,0 +1,26 @@
+﻿@model CommentFormModel;
+
+@{
+    ViewBag.Title = "Add Comment";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+<div class="form">
+    <form method="post" asp-controller="Comment" asp-action="Add" asp-route-id=@Model.RecipeId>
+        <div class="form-group">
+            <label asp-for="Text"></label>
+            <input asp-for="Text" class="form-control" placeholder="Text...">
+            <span asp-validation-for="Text" class="small text-danger"></span>
+        </div>
+
+        <div class="text-center">
+            <input class="btn btn-orange mt-3 " type="submit" value="Add" />
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
